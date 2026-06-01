@@ -1,0 +1,11 @@
+-- ============================================================
+-- Exercise: Derived table (subquery in FROM)
+-- Problem: Build a derived table of per-order totals
+--          (order_id, total = SUM(quantity * unit_price) grouped by order_id),
+--          then return order_id and total for orders whose total > 500.
+-- Expected columns (in order): order_id, total
+-- Ordering: total DESC, order_id ASC
+-- Concepts: derived table (subquery in FROM), GROUP BY
+-- ============================================================
+-- TODO: replace the placeholder below with your query
+SELECT NULL AS todo;  -- placeholder: makes the test fail until you solve it

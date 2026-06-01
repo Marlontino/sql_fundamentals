@@ -1,0 +1,16 @@
+-- ============================================================
+-- Exercise: Constrain the reviews table (PK / FK / UNIQUE / CHECK)
+-- Problem: Create a table named `reviews` with:
+--          id         INTEGER PRIMARY KEY
+--          product_id INTEGER NOT NULL, referencing products(id)
+--          author     TEXT    NOT NULL
+--          rating     INTEGER NOT NULL, CHECK that rating is between 1 and 5
+--          a table-level UNIQUE constraint on (product_id, author)
+-- Verified by: foreign_keys (FK points to products(id)) plus IntegrityError
+--              probes for CHECK (rating=6), FK (product_id=999), NOT NULL
+--              (author NULL), and UNIQUE (same product_id+author twice).
+--              Use seeded product ids 1..10 for valid inserts.
+-- Concepts: PRIMARY KEY, FOREIGN KEY, UNIQUE, CHECK, NOT NULL
+-- ============================================================
+-- TODO: replace the placeholder below with the real CREATE TABLE statement.
+CREATE TABLE reviews (id INTEGER, product_id INTEGER, author TEXT, rating INTEGER);  -- TODO: no constraints => integrity probes don't fire => test fails

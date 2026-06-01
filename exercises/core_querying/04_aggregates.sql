@@ -1,0 +1,12 @@
+-- ============================================================
+-- Exercise: Aggregates over joined tables
+-- Problem: Return each customer's id, name, and total_spent, where
+--          total_spent = SUM(quantity * unit_price) across every line
+--          item in all of that customer's orders.
+--          (Customers with no orders are excluded by the inner join.)
+-- Expected columns (in order): customer_id, name, total_spent
+-- Ordering: total_spent DESC, customer_id ASC
+-- Concepts: JOIN, SUM, GROUP BY, ORDER BY
+-- ============================================================
+-- TODO: replace the placeholder below with your query
+SELECT NULL AS todo;  -- placeholder: makes the test fail until you solve it

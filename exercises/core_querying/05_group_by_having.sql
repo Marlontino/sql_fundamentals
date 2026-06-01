@@ -1,0 +1,11 @@
+-- ============================================================
+-- Exercise: GROUP BY with HAVING
+-- Problem: Return customers who have placed MORE THAN 2 orders.
+--          Show their name and order_count (number of orders).
+--          HAVING filters on the aggregate; WHERE cannot.
+-- Expected columns (in order): name, order_count
+-- Ordering: order_count DESC, name ASC
+-- Concepts: GROUP BY, HAVING, COUNT
+-- ============================================================
+-- TODO: replace the placeholder below with your query
+SELECT NULL AS todo;  -- placeholder: makes the test fail until you solve it

@@ -1,0 +1,14 @@
+-- ============================================================
+-- Exercise: Create the customer_order_counts view
+-- Problem: Create a VIEW named `customer_order_counts` over the seeded `orders`
+--          table that returns one row per customer WHO HAS ORDERS, with columns:
+--          customer_id, order_count  (the number of orders that customer placed).
+--          Customers with no orders (e.g. Heidi, id 8) must NOT appear.
+-- Verified by: the test creates this view, then runs
+--              SELECT customer_id, order_count FROM customer_order_counts
+--              ORDER BY customer_id and compares the rows.
+-- Note: this file must contain ONLY the CREATE VIEW statement (no trailing SELECT).
+-- Concepts: CREATE VIEW, GROUP BY, COUNT
+-- ============================================================
+-- TODO: replace the placeholder below with the real CREATE VIEW statement.
+CREATE VIEW customer_order_counts AS SELECT NULL AS customer_id, NULL AS order_count;  -- TODO: returns one all-NULL row => rows mismatch => test fails

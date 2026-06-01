@@ -1,0 +1,18 @@
+-- ============================================================
+-- Exercise: Index the events table
+-- Problem: First create a table named `events`:
+--          id         INTEGER PRIMARY KEY
+--          user_id    INTEGER NOT NULL
+--          kind       TEXT    NOT NULL
+--          created_at TEXT    NOT NULL
+--          Then create TWO indexes:
+--            - a non-unique index named `idx_events_user` on (user_id)
+--            - a UNIQUE index named `uq_events_kind_time` on (kind, created_at)
+-- Verified by: index_list — both index names exist with the correct unique flag
+--              (idx_events_user unique=0, uq_events_kind_time unique=1).
+-- Note: PRIMARY KEY and UNIQUE columns are auto-indexed by SQLite, so you only
+--       declare the two indexes above explicitly.
+-- Concepts: CREATE INDEX, CREATE UNIQUE INDEX
+-- ============================================================
+-- TODO: replace the placeholder below with the table + the two CREATE INDEX statements.
+CREATE TABLE events (id INTEGER PRIMARY KEY, user_id INTEGER NOT NULL, kind TEXT NOT NULL, created_at TEXT NOT NULL);  -- TODO: indexes missing => index_list lacks them => test fails

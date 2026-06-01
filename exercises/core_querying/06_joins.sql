@@ -1,0 +1,12 @@
+-- ============================================================
+-- Exercise: Self join with LEFT JOIN
+-- Problem: Return each employee's name and their manager's name.
+--          The top of the org (manager_id IS NULL) must still appear,
+--          with a NULL manager -- so join employees to itself with a
+--          LEFT JOIN on e.manager_id = m.id.
+-- Expected columns (in order): employee, manager
+-- Ordering: employee id ASC
+-- Concepts: self join, LEFT JOIN, NULL
+-- ============================================================
+-- TODO: replace the placeholder below with your query
+SELECT NULL AS todo;  -- placeholder: makes the test fail until you solve it

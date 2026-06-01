@@ -1,0 +1,11 @@
+-- ============================================================
+-- Exercise: Scalar subquery in SELECT
+-- Problem: For each product, return its id, name, price, and how far its
+--          price is from the average price across ALL products,
+--          as diff_from_avg = ROUND(price - (average price), 2).
+-- Expected columns (in order): id, name, price, diff_from_avg
+-- Ordering: id ASC
+-- Concepts: scalar subquery in SELECT
+-- ============================================================
+-- TODO: replace the placeholder below with your query
+SELECT NULL AS todo;  -- placeholder: makes the test fail until you solve it

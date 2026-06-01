@@ -1,0 +1,12 @@
+-- ============================================================
+-- Exercise: Recursive CTE over the employee hierarchy
+-- Problem: Using a recursive CTE rooted at the top manager
+--          (manager_id IS NULL), return id, name, and level for every
+--          employee. The root is level 1, their direct reports are level 2,
+--          and so on down the org chart.
+-- Expected columns (in order): id, name, level
+-- Ordering: level ASC, id ASC
+-- Concepts: recursive CTE, WITH RECURSIVE
+-- ============================================================
+-- TODO: replace the placeholder below with your query
+SELECT NULL AS todo;  -- placeholder: makes the test fail until you solve it

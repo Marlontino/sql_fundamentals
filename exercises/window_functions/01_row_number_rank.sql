@@ -1,0 +1,19 @@
+-- ============================================================
+-- Exercise: Rank employees by salary
+-- Problem: Rank every employee across the whole company by salary,
+--          highest salary = rank 1. Return one row per employee.
+-- Expected columns (in order): name, salary, salary_rank
+-- Ordering: salary_rank ASC, name ASC
+-- Concepts: RANK, ROW_NUMBER, DENSE_RANK
+--
+-- The three ranking window functions differ only in how they treat TIES
+-- (rows with equal ORDER BY values):
+--   ROW_NUMBER() -> 1,2,3,4 ... always unique, ties broken arbitrarily.
+--   RANK()       -> 1,2,2,4 ... ties share a rank, then SKIP the gap.
+--   DENSE_RANK() -> 1,2,2,3 ... ties share a rank, NO gap afterward.
+-- Salaries here are all distinct, so all three would agree on this data;
+-- use RANK() as the spec requires:
+--   RANK() OVER (ORDER BY salary DESC)
+-- ============================================================
+-- TODO: replace the placeholder below with your query
+SELECT NULL AS todo;  -- placeholder: makes the test fail until you solve it

@@ -1,0 +1,15 @@
+-- ============================================================
+-- Exercise: Transfer funds with COMMIT and ROLLBACK
+-- Problem: 1. Create a table `accounts (id INTEGER PRIMARY KEY, balance REAL NOT NULL)`.
+--          2. Insert two accounts: id 1 with balance 100, id 2 with balance 0.
+--          3. In a COMMITTED transaction, transfer 30 from account 1 to account 2
+--             (BEGIN; subtract 30 from id 1; add 30 to id 2; COMMIT).
+--          4. In a SECOND transaction, make some change to a balance and then
+--             ROLLBACK it, so that change is discarded (BEGIN; UPDATE ...; ROLLBACK).
+--          Final expected state: account 1 = 70, account 2 = 30.
+-- Verified by: the test runs this script then asserts
+--              SELECT id, balance FROM accounts ORDER BY id  ==  [(1,70.0),(2,30.0)].
+-- Concepts: transactions, BEGIN, COMMIT, ROLLBACK
+-- ============================================================
+-- TODO: replace the placeholder below with the table, inserts, and two transactions.
+CREATE TABLE accounts (id INTEGER PRIMARY KEY, balance REAL NOT NULL);  -- TODO: no rows / no transfer => balances mismatch => test fails

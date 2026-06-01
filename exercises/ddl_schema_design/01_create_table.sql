@@ -1,0 +1,13 @@
+-- ============================================================
+-- Exercise: Create the suppliers table
+-- Problem: Create a table named `suppliers` with exactly these columns, in order:
+--          id      INTEGER  PRIMARY KEY
+--          name    TEXT     NOT NULL
+--          country TEXT     NOT NULL
+--          rating  REAL     (nullable)
+-- Verified by: table_info — column names in order, their declared types,
+--              the NOT NULL flags (name/country), and that id is the primary key.
+-- Concepts: CREATE TABLE, column types, NOT NULL, PRIMARY KEY
+-- ============================================================
+-- TODO: replace the placeholder below with the real CREATE TABLE statement.
+CREATE TABLE suppliers (id INTEGER);  -- TODO: wrong columns => table_info mismatch => test fails

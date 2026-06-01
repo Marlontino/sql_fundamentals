@@ -1,0 +1,13 @@
+-- ============================================================
+-- Exercise: CTE (WITH) with an aggregate over the CTE
+-- Problem: Using a CTE that computes total_spent per customer
+--          (SUM(quantity * unit_price) over customers -> orders -> order_items),
+--          return name and total_spent for customers whose total_spent is
+--          strictly greater than the average customer total_spent
+--          (averaged over the CTE rows).
+-- Expected columns (in order): name, total_spent
+-- Ordering: total_spent DESC, name ASC
+-- Concepts: CTE (WITH), aggregate over a CTE
+-- ============================================================
+-- TODO: replace the placeholder below with your query
+SELECT NULL AS todo;  -- placeholder: makes the test fail until you solve it
