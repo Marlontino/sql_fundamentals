@@ -12,4 +12,14 @@
 --    the same column count/types.)
 -- ============================================================
 -- TODO: replace the placeholder below with your query
-SELECT NULL AS todo;  -- placeholder: makes the test fail until you solve it
+SELECT customer_id 
+FROM orders 
+WHERE status = 'completed'
+
+INTERSECT
+
+SELECT customer_id 
+FROM orders 
+WHERE status = 'shipped'
+
+ORDER BY customer_id ASC;

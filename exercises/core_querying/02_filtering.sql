@@ -10,4 +10,10 @@
 -- Concepts: WHERE, IN, BETWEEN, LIKE, IS NOT NULL
 -- ============================================================
 -- TODO: replace the placeholder below with your query
-SELECT NULL AS todo;  -- placeholder: makes the test fail until you solve it
+SELECT id, name, salary
+FROM employees
+WHERE department_id IN (1, 2)
+  AND salary BETWEEN 90000 AND 150000
+  AND name LIKE '%a%'
+  AND manager_id IS NOT NULL
+ORDER BY salary DESC, id ASC;

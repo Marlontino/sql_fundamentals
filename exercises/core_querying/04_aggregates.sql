@@ -9,4 +9,9 @@
 -- Concepts: JOIN, SUM, GROUP BY, ORDER BY
 -- ============================================================
 -- TODO: replace the placeholder below with your query
-SELECT NULL AS todo;  -- placeholder: makes the test fail until you solve it
+SELECT c.id AS customer_id, c.name, SUM(oi.quantity * oi.unit_price) AS total_spent
+FROM customers c
+JOIN orders o ON c.id = o.customer_id
+JOIN order_items oi ON o.id = oi.order_id
+GROUP BY c.id, c.name
+ORDER BY total_spent DESC, customer_id ASC;                  

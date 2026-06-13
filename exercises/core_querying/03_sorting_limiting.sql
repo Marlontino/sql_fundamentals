@@ -7,4 +7,7 @@
 -- Concepts: DISTINCT, ORDER BY, LIMIT
 -- ============================================================
 -- TODO: replace the placeholder below with your query
-SELECT NULL AS todo;  -- placeholder: makes the test fail until you solve it
+SELECT DISTINCT price
+FROM products
+ORDER BY price DESC
+LIMIT 5;

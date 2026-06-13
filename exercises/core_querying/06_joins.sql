@@ -9,4 +9,8 @@
 -- Concepts: self join, LEFT JOIN, NULL
 -- ============================================================
 -- TODO: replace the placeholder below with your query
-SELECT NULL AS todo;  -- placeholder: makes the test fail until you solve it
+SELECT e.name as employee_name, m.name as manager_name
+FROM employees e 
+LEFT JOIN employees m ON e.manager_id = m.id
+ORDER BY e.id ASC;
+

@@ -7,4 +7,6 @@
 -- Concepts: SELECT, column alias, arithmetic
 -- ============================================================
 -- TODO: replace the placeholder below with your query
-SELECT NULL AS todo;  -- placeholder: makes the test fail until you solve it
+SELECT id, name, ROUND(price * 1.1, 2) AS price_with_tax
+FROM products
+ORDER BY id ASC;
