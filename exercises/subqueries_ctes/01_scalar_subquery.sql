@@ -8,4 +8,10 @@
 -- Concepts: scalar subquery in SELECT
 -- ============================================================
 -- TODO: replace the placeholder below with your query
-SELECT NULL AS todo;  -- placeholder: makes the test fail until you solve it
+SELECT 
+    id, 
+    name, 
+    price, 
+    ROUND(price - (SELECT AVG(price) FROM products), 2) AS diff_from_avg
+FROM products
+ORDER BY id ASC;

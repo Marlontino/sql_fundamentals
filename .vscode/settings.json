@@ -1,0 +1,10 @@
+{
+  "sqltools.connections": [
+    {
+      "name": "sql_fundamentals practice",
+      "driver": "SQLite",
+      "database": "${workspaceFolder}/practice.db"
+    }
+  ],
+  "sqltools.useNodeRuntime": true
+}

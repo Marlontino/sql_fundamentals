@@ -1,0 +1,6 @@
+# Scratch SQLite DB for SQLTools browsing (rebuild from db/schema.sql + db/seed.sql)
+practice.db
+
+# Python
+__pycache__/
+*.pyc

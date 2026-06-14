@@ -8,4 +8,11 @@
 -- Concepts: derived table (subquery in FROM), GROUP BY
 -- ============================================================
 -- TODO: replace the placeholder below with your query
-SELECT NULL AS todo;  -- placeholder: makes the test fail until you solve it
+SELECT order_id, SUM(quantity * unit_price) AS total
+FROM (
+    SELECT order_id, quantity, unit_price
+    FROM order_items
+) AS oi
+GROUP BY order_id
+HAVING SUM(quantity * unit_price) > 500
+ORDER BY total DESC, order_id ASC;

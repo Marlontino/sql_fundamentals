@@ -9,4 +9,25 @@
 -- Concepts: recursive CTE, WITH RECURSIVE
 -- ============================================================
 -- TODO: replace the placeholder below with your query
-SELECT NULL AS todo;  -- placeholder: makes the test fail until you solve it
+WITH RECURSIVE employee_hierarchy AS (
+    -- Anchor member: start with the top manager (manager_id IS NULL)
+    SELECT
+        id,
+        name,
+        1 AS level
+    FROM employees
+    WHERE manager_id IS NULL
+
+    UNION ALL
+
+    -- Recursive member: join employees to the CTE to find direct reports
+    SELECT
+        e.id,
+        e.name,
+        eh.level + 1 AS level
+    FROM employees e
+    JOIN employee_hierarchy eh ON e.manager_id = eh.id
+)
+SELECT id, name, level
+FROM employee_hierarchy
+ORDER BY level ASC, id ASC;
