@@ -16,4 +16,5 @@
 --   RANK() OVER (ORDER BY salary DESC)
 -- ============================================================
 -- TODO: replace the placeholder below with your query
-SELECT NULL AS todo;  -- placeholder: makes the test fail until you solve it
+SELECT name, salary, RANK() OVER (ORDER BY salary DESC) AS salary_rank
+FROM employees

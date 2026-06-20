@@ -23,4 +23,23 @@
 -- BY the order), then apply the windowed SUM over those per-order rows.
 -- ============================================================
 -- TODO: replace the placeholder below with your query
-SELECT NULL AS todo;  -- placeholder: makes the test fail until you solve it
+WITH order_totals AS (
+    SELECT
+        o.id AS order_id,
+        o.order_date,
+        SUM(oi.quantity * oi.unit_price) AS order_total
+    FROM orders o
+    JOIN order_items oi ON o.id = oi.order_id
+    WHERE o.customer_id = 1
+    GROUP BY o.id, o.order_date
+)
+SELECT
+    order_id,
+    order_date,
+    order_total,
+    SUM(order_total) OVER (
+        ORDER BY order_date
+        ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+    ) AS running_total
+FROM order_totals
+ORDER BY order_date ASC;

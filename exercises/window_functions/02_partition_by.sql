@@ -12,4 +12,7 @@
 --   RANK() OVER (PARTITION BY department_id ORDER BY salary DESC)
 -- ============================================================
 -- TODO: replace the placeholder below with your query
-SELECT NULL AS todo;  -- placeholder: makes the test fail until you solve it
+SELECT department_id, name, salary,
+       RANK() OVER (PARTITION BY department_id ORDER BY salary DESC) AS dept_rank
+FROM employees 
+ORDER BY department_id ASC, dept_rank ASC;

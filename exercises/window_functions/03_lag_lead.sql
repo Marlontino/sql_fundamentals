@@ -16,4 +16,7 @@
 -- Remember to filter to customer_id = 3.
 -- ============================================================
 -- TODO: replace the placeholder below with your query
-SELECT NULL AS todo;  -- placeholder: makes the test fail until you solve it
+SELECT id, order_date, LAG(order_date) OVER (ORDER BY order_date) AS prev_order_date
+FROM orders
+WHERE customer_id = 3
+ORDER BY order_date ASC;
