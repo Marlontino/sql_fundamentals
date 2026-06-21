@@ -1,0 +1,28 @@
+-- ============================================================
+-- Exercise: Pivot order status counts to columns, per customer
+-- Problem: For every customer that has at least one order, return one row
+--          with customer_id and four count columns -- one per status value:
+--            completed, shipped, pending, cancelled
+-- Expected columns (in order): customer_id, completed, shipped, pending, cancelled
+-- Ordering: customer_id ASC
+-- Concepts: pivoting with SUM(CASE WHEN ...), conditional aggregation
+--
+-- SQLite has no PIVOT keyword. You build a pivot by hand with one
+-- conditional-aggregate expression per output column:
+--
+--   SELECT customer_id,
+--     SUM(CASE WHEN status = 'completed' THEN 1 ELSE 0 END) AS completed,
+--     SUM(CASE WHEN status = 'shipped'   THEN 1 ELSE 0 END) AS shipped,
+--     ...
+--   FROM orders GROUP BY customer_id;
+--
+-- The pattern generalizes. To pivot a SUM rather than a count, replace `1`
+-- with the value being summed:
+--
+--   SUM(CASE WHEN status = 'completed' THEN amount ELSE 0 END) AS revenue
+--
+-- Postgres has FILTER for the same effect (cleaner, but not in SQLite):
+--   COUNT(*) FILTER (WHERE status = 'completed') AS completed
+-- ============================================================
+-- TODO: replace the placeholder below with your query
+SELECT NULL AS todo;  -- placeholder: makes the test fail until you solve it

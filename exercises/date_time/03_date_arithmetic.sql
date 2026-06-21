@@ -1,0 +1,26 @@
+-- ============================================================
+-- Exercise: Employee tenure in days as of 2024-01-01
+-- Problem: For each employee, return id, name, and tenure_days = the integer
+--          number of days between their hire_date and 2024-01-01.
+-- Expected columns (in order): id, name, tenure_days
+-- Ordering: id ASC
+-- Concepts: date arithmetic, julianday, CAST to INTEGER
+--
+-- SQLite represents dates as TEXT, so you can't subtract them directly. The
+-- standard tool for "days between two dates" is julianday() -- it returns the
+-- date as a floating-point Julian Day Number, and the difference of two of
+-- those is the number of days:
+--
+--   julianday('2024-01-01') - julianday(hire_date)
+--
+-- That's a REAL. CAST it to INTEGER if the spec wants a whole-day count:
+--
+--   CAST(julianday(end) - julianday(start) AS INTEGER)
+--
+-- Other engines have a similar pattern under a different name:
+--   Postgres / standard:   age(end, start)  or  end - start  for DATE
+--   MySQL:                 DATEDIFF(end, start)
+-- The idea is the same: convert to a numeric form, subtract, interpret.
+-- ============================================================
+-- TODO: replace the placeholder below with your query
+SELECT NULL AS todo;  -- placeholder: makes the test fail until you solve it

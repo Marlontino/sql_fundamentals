@@ -1,0 +1,35 @@
+-- ============================================================
+-- Exercise: Median order value per customer
+-- Problem: For each customer that has at least one order, return customer_id
+--          and the MEDIAN order value, rounded to 2 decimals.
+--          An "order value" is SUM(quantity * unit_price) over that order's
+--          line items. Median of N values:
+--            odd  N -> the middle value
+--            even N -> the AVERAGE of the two middle values
+-- Expected columns (in order): customer_id, median_order_value
+-- Ordering: customer_id ASC
+-- Concepts: median without a percentile function, ROW_NUMBER + COUNT window
+--
+-- Some engines have PERCENTILE_CONT (Postgres) or APPROX_PERCENTILE
+-- (BigQuery/Snowflake). SQLite has neither. The portable trick is to rank
+-- each row within its group and pick the middle:
+--
+--   ROW_NUMBER() OVER (PARTITION BY group ORDER BY value) AS rn
+--   COUNT(*)    OVER (PARTITION BY group)                  AS cnt
+--
+-- For a group of size N the middle row indexes are:
+--   odd  N -> rn = (N+1)/2                  -- a single middle row
+--   even N -> rn = N/2 and N/2 + 1          -- the two middle rows
+--
+-- A clever closed form that covers both cases at once (integer division):
+--   rn IN ((cnt + 1) / 2, (cnt + 2) / 2)
+--   - N=5 -> rn IN (3, 3)  -> just row 3
+--   - N=4 -> rn IN (2, 3)  -> rows 2 and 3
+-- Then AVG() over the selected rows gives the median.
+--
+-- Build the per-order totals first (CTE: join orders to order_items, group
+-- by order). Then apply the windowed ROW_NUMBER + COUNT, then filter and
+-- average per customer.
+-- ============================================================
+-- TODO: replace the placeholder below with your query
+SELECT NULL AS todo;  -- placeholder: makes the test fail until you solve it

@@ -75,6 +75,18 @@ order to attempt them.
 4. **`ddl_schema_design/`** — `CREATE TABLE`, constraints (PK/FK/UNIQUE/CHECK),
    indexes, views, transactions. These exercises create **new** tables so they
    don't collide with the seeded schema.
+5. **`nulls_and_types/`** — `IS NULL` vs `= NULL`, `COALESCE`/`NULLIF`, NULL
+   behavior in aggregates, `CAST`, and `strftime` for date parts.
+6. **`dml/`** — `INSERT` (single + multi-row), `UPDATE`, `DELETE`, and upsert
+   via `INSERT ... ON CONFLICT DO UPDATE`. Like `ddl_schema_design`, these
+   create their own tables.
+7. **`date_time/`** — half-open date ranges, monthly bucketing with
+   `strftime`, `julianday` arithmetic, and `CASE` bucketing.
+8. **`interview_patterns/`** — top-N per group, gaps-and-islands,
+   sessionization, cohort retention, pivoting with `CASE`, and median without
+   a percentile function. These compose primitives from the earlier topics.
+9. **`performance/`** — reading `EXPLAIN QUERY PLAN`, the difference between
+   `SCAN` and `SEARCH`, and how the right index flips the plan.
 
 New to SQL or rusty? Read [`SQL_PRIMER.md`](SQL_PRIMER.md) first — it's a
 "lesson zero" covering the relational model, logical query order, `NULL`
@@ -95,6 +107,11 @@ sql_fundamentals/
 │   ├── core_querying/
 │   ├── subqueries_ctes/
 │   ├── window_functions/
-│   └── ddl_schema_design/
+│   ├── ddl_schema_design/
+│   ├── nulls_and_types/
+│   ├── dml/
+│   ├── date_time/
+│   ├── interview_patterns/
+│   └── performance/
 └── tests/             # one test module per topic
 ```

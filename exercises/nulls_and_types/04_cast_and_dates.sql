@@ -1,0 +1,30 @@
+-- ============================================================
+-- Exercise: Extract signup year as an integer
+-- Problem: For every customer, return id, name, and signup_year as an INTEGER
+--          extracted from signup_date (e.g. '2022-01-15' -> 2022).
+-- Expected columns (in order): id, name, signup_year
+-- Ordering: id ASC
+-- Concepts: CAST, type coercion, strftime, dates in SQLite
+--
+-- SQLite stores dates as ISO-8601 TEXT ('YYYY-MM-DD'). To pull a piece out:
+--
+--   strftime('%Y', signup_date)   -- returns '2022' (TEXT)
+--   strftime('%m', signup_date)   -- returns '01'   (TEXT)
+--   strftime('%d', signup_date)   -- returns '15'   (TEXT)
+--
+-- strftime returns TEXT -- if you want an integer you have to CAST it:
+--
+--   CAST(strftime('%Y', signup_date) AS INTEGER)  -> 2022
+--
+-- CAST(value AS type) explicitly converts a value's type. Useful when:
+--   - functions return TEXT but you want INTEGER arithmetic
+--   - mixed types compare in surprising ways ('2022' < '2023' works
+--     lexicographically, but mixing TEXT and INTEGER does not)
+--
+-- Other date functions worth knowing:
+--   date('now')           -- today's date
+--   julianday(d1) - julianday(d2)   -- days between dates (as a float)
+--   strftime('%Y-%m', order_date)   -- year-month bucket like '2023-01'
+-- ============================================================
+-- TODO: replace the placeholder below with your query
+SELECT NULL AS todo;  -- placeholder: makes the test fail until you solve it

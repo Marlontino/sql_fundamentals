@@ -1,0 +1,41 @@
+-- ============================================================
+-- Exercise: Apply a 10% discount to expensive widgets via UPDATE
+-- Problem: 1. CREATE a table named `widgets` with columns:
+--             id     INTEGER PRIMARY KEY
+--             name   TEXT    NOT NULL
+--             price  REAL    NOT NULL
+--          2. INSERT these four rows:
+--             (1, 'small',  10.00)
+--             (2, 'medium', 50.00)
+--             (3, 'large',  100.00)
+--             (4, 'xl',     200.00)
+--          3. UPDATE the table so every widget with price > 50 has its price
+--             multiplied by 0.9 (a 10% discount). The two cheaper widgets
+--             must be left untouched.
+--          Final expected state:
+--             (1, 'small',  10.0)
+--             (2, 'medium', 50.0)
+--             (3, 'large',  90.0)
+--             (4, 'xl',     180.0)
+-- Verified by: the test runs this script then queries
+--              SELECT id, name, price FROM widgets ORDER BY id.
+-- Concepts: UPDATE ... SET ... WHERE, computed updates
+--
+-- UPDATE shape:
+--
+--   UPDATE table_name
+--   SET col1 = expr1, col2 = expr2, ...
+--   WHERE predicate;
+--
+-- The RHS of SET is just an expression -- it can reference the row's own
+-- columns, so this is the idiom for in-place transforms:
+--
+--   UPDATE widgets SET price = price * 0.9 WHERE price > 50;
+--
+-- Forgetting the WHERE on an UPDATE updates EVERY row, silently. This is
+-- the classic "I dropped prod" mistake; most prod databases require a
+-- WHERE clause or "safe updates" mode for exactly this reason. In review,
+-- treat any UPDATE without a WHERE as a code smell.
+-- ============================================================
+-- TODO: replace the placeholder below with the CREATE + INSERT + UPDATE
+CREATE TABLE widgets (id INTEGER PRIMARY KEY, name TEXT NOT NULL, price REAL NOT NULL);  -- TODO: no rows / no UPDATE => mismatch => test fails

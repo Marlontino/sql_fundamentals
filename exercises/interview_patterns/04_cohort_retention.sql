@@ -1,0 +1,31 @@
+-- ============================================================
+-- Exercise: Yearly signup cohorts and how many returned
+-- Problem: Group customers into cohorts by their signup YEAR (e.g. '2021',
+--          '2022', '2023'). For each cohort return:
+--            cohort       -- signup year as TEXT, like '2022'
+--            cohort_size  -- how many customers signed up that year
+--            returners    -- how many of those placed AT LEAST ONE order
+-- Expected columns (in order): cohort, cohort_size, returners
+-- Ordering: cohort ASC
+-- Concepts: cohort analysis, conditional aggregation, EXISTS / IN
+--
+-- Cohort analysis: bucket users by something they share (signup month,
+-- first-purchase week, acquisition channel) and then measure how the bucket
+-- behaves over time. Step 1 is "compute the cohort key per user", step 2
+-- is "aggregate per cohort".
+--
+-- Two shapes you'll see for "did this customer ever do X?":
+--
+--   SUM(CASE WHEN c.id IN (SELECT customer_id FROM orders) THEN 1 ELSE 0 END)
+--   SUM(CASE WHEN EXISTS (SELECT 1 FROM orders o WHERE o.customer_id = c.id)
+--            THEN 1 ELSE 0 END)
+--
+-- Both are fine. EXISTS often optimizes better on larger data because it
+-- can stop at the first match; on the seeded data here either works.
+--
+-- For real retention analysis you'd also bucket the order side ("did they
+-- order in month N relative to their signup month?") to get the classic
+-- retention matrix. This exercise asks the simpler "ever returned" version.
+-- ============================================================
+-- TODO: replace the placeholder below with your query
+SELECT NULL AS todo;  -- placeholder: makes the test fail until you solve it

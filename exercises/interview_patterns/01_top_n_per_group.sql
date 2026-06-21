@@ -1,0 +1,34 @@
+-- ============================================================
+-- Exercise: Top 2 highest-paid employees per department
+-- Problem: For every department, return the top 2 employees by salary
+--          (highest first). Tied salaries break by name ASC, but the
+--          seeded data has no ties.
+-- Expected columns (in order): department_id, name, salary
+-- Ordering: department_id ASC, salary DESC, name ASC
+-- Concepts: top-N per group, window functions, filtering on a window rank
+--
+-- "Top N per group" is one of the most common interview SQL patterns.
+-- A windowed RANK() / ROW_NUMBER() / DENSE_RANK() inside a subquery, then
+-- a WHERE on the resulting rank in the outer query, is the canonical shape:
+--
+--   SELECT ... FROM (
+--     SELECT ..., ROW_NUMBER() OVER (
+--       PARTITION BY group_col ORDER BY metric DESC
+--     ) AS rn
+--     FROM t
+--   ) WHERE rn <= N
+--
+-- Why the subquery? Window functions are computed AFTER WHERE in the logical
+-- query order, so you can't filter on `rn` in the same SELECT that produced
+-- it. Wrap it in a derived table (or CTE) so the rank is materialized first,
+-- then filter.
+--
+-- Which ranking function?
+--   ROW_NUMBER -> always returns exactly N rows per group (arbitrary tie-break)
+--   RANK       -> ties share a rank; can return MORE than N rows if there
+--                 are ties at the cutoff
+--   DENSE_RANK -> ties share a rank, no gaps; "top N distinct values"
+-- For this exercise either ROW_NUMBER or RANK works; there are no ties.
+-- ============================================================
+-- TODO: replace the placeholder below with your query
+SELECT NULL AS todo;  -- placeholder: makes the test fail until you solve it

@@ -1,0 +1,22 @@
+-- ============================================================
+-- Exercise: Find employees with no manager
+-- Problem: Return id and name for every employee whose manager_id is NULL
+--          (i.e. the top of the org).
+-- Expected columns (in order): id, name
+-- Ordering: id ASC
+-- Concepts: NULL, three-valued logic, IS NULL
+--
+-- This is the classic NULL gotcha: in SQL, NULL is not a value, it's an
+-- "unknown". So `manager_id = NULL` is NOT true, NOT false -- it's UNKNOWN,
+-- and WHERE only keeps rows where the predicate is TRUE. The result: that
+-- filter returns ZERO rows, silently, even for rows where manager_id is
+-- literally NULL. You must write `IS NULL` / `IS NOT NULL` for NULL checks.
+--
+--   WHERE manager_id = NULL     -- returns nothing (wrong)
+--   WHERE manager_id IS NULL    -- returns the rows you want
+--
+-- Interviewers love this question because the wrong query *runs* -- it just
+-- silently gives the wrong answer.
+-- ============================================================
+-- TODO: replace the placeholder below with your query
+SELECT NULL AS todo;  -- placeholder: makes the test fail until you solve it

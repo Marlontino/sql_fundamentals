@@ -1,0 +1,31 @@
+-- ============================================================
+-- Exercise: Bucket customers by signup era
+-- Problem: For every customer, return id, name, and signup_bucket as one of:
+--            'pre_2022'   if signup_date is before 2022-01-01
+--            '2022'       if signup_date is in 2022
+--            '2023_plus'  if signup_date is 2023-01-01 or later
+-- Expected columns (in order): id, name, signup_bucket
+-- Ordering: id ASC
+-- Concepts: CASE expression, date comparison, bucketing
+--
+-- A CASE expression maps a value to a label using a sequence of WHEN clauses.
+-- It evaluates top-down and returns the result of the FIRST matching branch:
+--
+--   CASE
+--     WHEN signup_date < '2022-01-01' THEN 'pre_2022'
+--     WHEN signup_date < '2023-01-01' THEN '2022'
+--     ELSE '2023_plus'
+--   END
+--
+-- Because evaluation stops at the first match, you can write each WHEN as a
+-- simple upper-bound test instead of repeating the previous range -- much
+-- easier to read and easier to keep right.
+--
+-- Other forms:
+--   CASE col WHEN 1 THEN 'a' WHEN 2 THEN 'b' ELSE 'c' END   -- value form
+--   CASE WHEN x > 0 THEN 'pos' ... END                       -- searched form
+-- CASE works inside SELECT, WHERE, ORDER BY, GROUP BY -- anywhere you'd put
+-- an expression.
+-- ============================================================
+-- TODO: replace the placeholder below with your query
+SELECT NULL AS todo;  -- placeholder: makes the test fail until you solve it

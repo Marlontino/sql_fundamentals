@@ -1,0 +1,30 @@
+-- ============================================================
+-- Exercise: Consecutive order-ID islands for customer 1
+-- Problem: Customer 1 placed orders with ids 1, 2, and 15. Group each customer's
+--          orders into "islands" where the id is consecutive (next id = prev + 1),
+--          and return one row per island with start_id, end_id, and run_len.
+--          For customer 1 specifically:
+--            island {1, 2}  -> start_id=1, end_id=2, run_len=2
+--            island {15}    -> start_id=15, end_id=15, run_len=1
+-- Expected columns (in order): start_id, end_id, run_len
+-- Ordering: start_id ASC
+-- Concepts: gaps-and-islands, ROW_NUMBER trick, GROUP BY
+--
+-- "Gaps and islands" is a classic interview problem: detect runs of consecutive
+-- values (login streaks, contiguous status periods, sequential order ids, etc.).
+--
+-- The canonical trick: assign each row a sequential ROW_NUMBER within its
+-- partition, then subtract that row number from the value you want to group:
+--
+--   value - ROW_NUMBER() OVER (ORDER BY value)  ->  constant within an island
+--
+-- Why it works: inside a single island the value AND the row_number both go
+-- up by 1 each row, so their difference is constant. When a gap appears the
+-- value jumps but row_number doesn't -- so the difference shifts and a new
+-- "group key" begins. GROUP BY that key, aggregate, done.
+--
+-- Filter to customer_id = 1 inside the CTE/subquery (you don't need PARTITION
+-- BY here since you're already restricting to one customer).
+-- ============================================================
+-- TODO: replace the placeholder below with your query
+SELECT NULL AS todo;  -- placeholder: makes the test fail until you solve it

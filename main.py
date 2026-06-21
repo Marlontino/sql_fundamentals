@@ -52,6 +52,56 @@ CURRICULUM = [
             ("05_transactions.sql", "BEGIN / COMMIT / ROLLBACK"),
         ],
     ),
+    (
+        "nulls_and_types",
+        "NULL semantics, three-valued logic, COALESCE, CAST, and type coercion.",
+        [
+            ("01_is_null_vs_equals.sql", "Why = NULL fails; IS NULL / IS NOT NULL"),
+            ("02_coalesce_nullif.sql", "COALESCE for defaults; NULLIF as the inverse"),
+            ("03_nulls_in_aggregates.sql", "COUNT(*) vs COUNT(col); NULLs skipped by AVG/SUM"),
+            ("04_cast_and_dates.sql", "CAST, strftime, date parts as integers"),
+        ],
+    ),
+    (
+        "dml",
+        "Changing data: INSERT, UPDATE, DELETE, and upsert (ON CONFLICT).",
+        [
+            ("01_insert_basic.sql", "Single-row and multi-row INSERT"),
+            ("02_update_filtered.sql", "UPDATE ... SET ... WHERE; computed updates"),
+            ("03_delete_filtered.sql", "DELETE ... WHERE; previewing with SELECT first"),
+            ("04_upsert.sql", "INSERT ... ON CONFLICT DO UPDATE"),
+        ],
+    ),
+    (
+        "date_time",
+        "Practical date and time work: filtering, bucketing, arithmetic, CASE buckets.",
+        [
+            ("01_date_filtering.sql", "Half-open date ranges, ISO-8601 comparison"),
+            ("02_date_truncation.sql", "Monthly buckets with strftime + GROUP BY"),
+            ("03_date_arithmetic.sql", "julianday() differences; tenure in days"),
+            ("04_age_buckets.sql", "CASE expression to label by date range"),
+        ],
+    ),
+    (
+        "interview_patterns",
+        "High-frequency interview shapes built from the primitives above.",
+        [
+            ("01_top_n_per_group.sql", "Top-N per partition via ROW_NUMBER / RANK"),
+            ("02_gaps_and_islands.sql", "value - ROW_NUMBER() to collapse runs"),
+            ("03_sessionization.sql", "LAG -> gap flag -> running SUM"),
+            ("04_cohort_retention.sql", "Cohort by signup year; conditional aggregation"),
+            ("05_pivot_with_case.sql", "Pivot status counts with SUM(CASE WHEN ...)"),
+            ("06_median_percentile.sql", "Median via ROW_NUMBER + COUNT, no percentile fn"),
+        ],
+    ),
+    (
+        "performance",
+        "Reading query plans and understanding when an index helps.",
+        [
+            ("01_explain_query_plan.sql", "EXPLAIN QUERY PLAN; recognizing a SCAN"),
+            ("02_index_impact.sql", "Adding the right index flips SCAN to SEARCH"),
+        ],
+    ),
 ]
 
 

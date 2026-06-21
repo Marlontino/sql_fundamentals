@@ -1,0 +1,30 @@
+-- ============================================================
+-- Exercise: Group customer 1's orders into sessions by 30-day gaps
+-- Problem: For customer 1's orders, return one row per order with id,
+--          order_date, and session_id -- a 1-based session counter that
+--          starts at 1 for the first order and increments WHENEVER the
+--          gap from the previous order exceeds 30 days.
+--          Customer 1 orders: 2023-01-10, 2023-02-15 (gap 36d), 2023-09-03
+--          (gap >30d) -> three sessions: 1, 2, 3.
+-- Expected columns (in order): id, order_date, session_id
+-- Ordering: order_date ASC
+-- Concepts: sessionization, LAG, windowed cumulative SUM, "new session" flag
+--
+-- Sessionization turns a stream of events into sessions separated by an
+-- inactivity gap. The pattern has three steps:
+--
+--   1. For each event, look back to the previous event's timestamp with LAG
+--      and compute the gap:
+--        julianday(order_date) - julianday(LAG(order_date) OVER (...))
+--   2. Flag each event as "starts a new session" (1) or "continues current
+--      session" (0). A new session starts when there is no previous event
+--      (LAG returns NULL, the first row) OR the gap exceeds the threshold.
+--   3. Session id = a running sum of those 1s:
+--        SUM(new_session) OVER (ORDER BY order_date ROWS BETWEEN UNBOUNDED
+--        PRECEDING AND CURRENT ROW)
+--
+-- A CTE is cleanest here: stage 1 in one CTE, stage 2 in the next, the
+-- running SUM in the final SELECT.
+-- ============================================================
+-- TODO: replace the placeholder below with your query
+SELECT NULL AS todo;  -- placeholder: makes the test fail until you solve it

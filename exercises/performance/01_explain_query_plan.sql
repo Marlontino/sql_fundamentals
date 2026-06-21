@@ -1,0 +1,43 @@
+-- ============================================================
+-- Exercise: Build a table that forces a table SCAN for a lookup query
+-- Problem: 1. CREATE a table `events_log`:
+--             id         INTEGER PRIMARY KEY
+--             user_id    INTEGER NOT NULL
+--             kind       TEXT    NOT NULL
+--             created_at TEXT    NOT NULL
+--          2. INSERT at least these five rows (extra rows are fine; the
+--             test only checks the query plan and that user_id=42 returns
+--             3 rows):
+--             (1, 42, 'click',   '2024-01-01')
+--             (2, 42, 'view',    '2024-01-02')
+--             (3, 99, 'click',   '2024-01-02')
+--             (4, 42, 'submit',  '2024-01-03')
+--             (5, 99, 'view',    '2024-01-04')
+--          3. DO NOT create any index on user_id.
+--
+-- Verified by:
+--   - The test asserts that EXPLAIN QUERY PLAN for
+--       SELECT * FROM events_log WHERE user_id = 42
+--     contains 'SCAN' (a full-table scan, the slow path).
+--   - The test then asserts the query returns exactly 3 rows.
+--
+-- Concepts: EXPLAIN QUERY PLAN, table scans, why indexes matter
+--
+-- EXPLAIN QUERY PLAN tells the database to PARSE and PLAN your query, but
+-- not run it -- and to return what its plan looks like. The first word in
+-- a SQLite plan line is usually one of:
+--
+--   SCAN  table_name              -- it will read every row in the table
+--   SEARCH table_name USING ...   -- it will use an index to jump straight
+--                                    to matching rows
+--
+-- A SCAN is fine for tiny tables but linear in row count. A SEARCH using
+-- an index is sublinear (B-tree lookup -> O(log n) plus the matching rows).
+-- "Why is this query slow?" interview questions almost always boil down to:
+-- a SCAN where there should be a SEARCH, or a SEARCH using the wrong index.
+--
+-- This exercise is the "before" half -- the table has no index so the plan
+-- is a SCAN. The next exercise adds the right index and the plan flips.
+-- ============================================================
+-- TODO: replace the placeholder below with the CREATE + INSERT statements.
+CREATE TABLE events_log (id INTEGER PRIMARY KEY, user_id INTEGER NOT NULL, kind TEXT NOT NULL, created_at TEXT NOT NULL);  -- TODO: no rows => row count mismatch => test fails

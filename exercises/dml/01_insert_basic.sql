@@ -1,0 +1,34 @@
+-- ============================================================
+-- Exercise: Create a staff table and INSERT three rows
+-- Problem: 1. CREATE a table named `staff` with columns:
+--             id    INTEGER PRIMARY KEY
+--             name  TEXT NOT NULL
+--             role  TEXT NOT NULL
+--          2. INSERT exactly these three rows (any insert syntax is fine,
+--             single-row or multi-row VALUES):
+--             (1, 'Alice', 'engineer')
+--             (2, 'Bob',   'designer')
+--             (3, 'Carol', 'engineer')
+-- Verified by: the test runs this script then queries
+--              SELECT id, name, role FROM staff ORDER BY id
+--              and compares against the three rows above.
+-- Concepts: INSERT, multi-row VALUES, CREATE TABLE
+--
+-- Two equivalent INSERT shapes:
+--
+--   INSERT INTO staff (id, name, role) VALUES (1, 'Alice', 'engineer');
+--   INSERT INTO staff (id, name, role) VALUES
+--     (1, 'Alice', 'engineer'),
+--     (2, 'Bob',   'designer'),
+--     (3, 'Carol', 'engineer');
+--
+-- The multi-row form is one statement (faster, atomic). You can omit the
+-- column list when you're inserting all columns in declared order, but
+-- listing them is safer -- the statement keeps working if columns are
+-- reordered or added later.
+--
+-- Note: this file contains multiple statements (DDL + DML), so the test
+-- runs it with `run_script_file`, not `run_sql_file`.
+-- ============================================================
+-- TODO: replace the placeholder below with the CREATE + INSERT statements
+CREATE TABLE staff (id INTEGER PRIMARY KEY, name TEXT NOT NULL, role TEXT NOT NULL);  -- TODO: no rows inserted yet => mismatch => test fails

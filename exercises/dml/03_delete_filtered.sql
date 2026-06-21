@@ -1,0 +1,32 @@
+-- ============================================================
+-- Exercise: DELETE cancelled order copies
+-- Problem: 1. CREATE a table named `order_log` with columns:
+--             id      INTEGER PRIMARY KEY
+--             status  TEXT    NOT NULL
+--          2. INSERT these five rows:
+--             (1, 'completed'), (2, 'cancelled'), (3, 'completed'),
+--             (4, 'cancelled'), (5, 'pending')
+--          3. DELETE every row whose status is 'cancelled'.
+--          Final expected state:
+--             (1, 'completed'), (3, 'completed'), (5, 'pending')
+-- Verified by: the test runs this script then queries
+--              SELECT id, status FROM order_log ORDER BY id.
+-- Concepts: DELETE ... WHERE, set-based deletes
+--
+-- DELETE shape:
+--
+--   DELETE FROM table_name WHERE predicate;
+--
+-- Like UPDATE, the WHERE is critical -- `DELETE FROM t;` (no WHERE) empties
+-- the entire table. SQLite calls that a "truncate optimization" and it's
+-- usually irreversible outside a transaction.
+--
+-- Defensive habit: prototype destructive statements as a SELECT first,
+-- confirm it returns exactly the rows you intend, THEN swap SELECT for
+-- DELETE. The WHERE clause stays the same; only the verb changes:
+--
+--   SELECT * FROM order_log WHERE status = 'cancelled';  -- preview
+--   DELETE FROM order_log WHERE status = 'cancelled';    -- commit
+-- ============================================================
+-- TODO: replace the placeholder below with the CREATE + INSERT + DELETE
+CREATE TABLE order_log (id INTEGER PRIMARY KEY, status TEXT NOT NULL);  -- TODO: no rows / no DELETE => mismatch => test fails

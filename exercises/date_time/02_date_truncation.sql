@@ -1,0 +1,25 @@
+-- ============================================================
+-- Exercise: Order counts bucketed by month
+-- Problem: For each calendar month in which there were orders, return the
+--          month label (YYYY-MM) and the number of orders placed in it.
+-- Expected columns (in order): month, order_count
+-- Ordering: month ASC
+-- Concepts: date truncation / bucketing, strftime, GROUP BY a computed column
+--
+-- Many analytics questions are "X per [day | week | month | quarter | year]".
+-- That's date truncation: collapse a date down to the start of its bucket so
+-- many dates group into one. Postgres has DATE_TRUNC; SQLite uses strftime:
+--
+--   strftime('%Y-%m', order_date)   -- '2023-01', '2023-02', ...   monthly
+--   strftime('%Y-%W', order_date)   -- '2023-03'                   weekly
+--   strftime('%Y',    order_date)   -- '2023'                      yearly
+--   date(order_date, 'start of month')  -- '2023-01-01'            month-start
+--
+-- You then GROUP BY that expression. You may either repeat the expression in
+-- GROUP BY, or (in SQLite/MySQL) GROUP BY its column alias:
+--
+--   SELECT strftime('%Y-%m', order_date) AS month, COUNT(*) ...
+--   FROM orders GROUP BY month
+-- ============================================================
+-- TODO: replace the placeholder below with your query
+SELECT NULL AS todo;  -- placeholder: makes the test fail until you solve it

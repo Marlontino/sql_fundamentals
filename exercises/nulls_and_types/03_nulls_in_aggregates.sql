@@ -1,0 +1,24 @@
+-- ============================================================
+-- Exercise: COUNT(*) vs COUNT(column) over employees
+-- Problem: Return one row with two columns:
+--          all_rows           = COUNT(*) over employees
+--          non_null_managers  = COUNT(manager_id) over employees
+--          The difference between the two equals the number of NULL
+--          manager_id values (i.e. the top of the org hierarchy).
+-- Expected columns (in order): all_rows, non_null_managers
+-- Ordering: n/a (a single row)
+-- Concepts: NULL semantics in aggregates, COUNT(*) vs COUNT(col)
+--
+-- Aggregate functions (COUNT, SUM, AVG, MIN, MAX) IGNORE NULLs in their
+-- input -- with one important exception:
+--
+--   COUNT(*)         counts ROWS, NULLs included
+--   COUNT(col)       counts non-NULL values in `col`
+--   SUM(col), AVG(col), MIN(col), MAX(col)  ignore NULLs entirely
+--
+-- This matters: AVG(col) over [10, 20, NULL] = 15, not 10 (NULL is skipped,
+-- not treated as 0). And COUNT(col) is a quick way to count "how many rows
+-- have a value here?"
+-- ============================================================
+-- TODO: replace the placeholder below with your query
+SELECT NULL AS todo;  -- placeholder: makes the test fail until you solve it

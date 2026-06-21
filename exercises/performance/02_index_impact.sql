@@ -1,0 +1,36 @@
+-- ============================================================
+-- Exercise: Make the user_id lookup go from SCAN to SEARCH
+-- Problem: 1. CREATE the same `events_log` table as in exercise 01, with the
+--             same five rows.
+--          2. ALSO create a non-unique index named `idx_events_log_user` on
+--             events_log(user_id).
+--
+-- Verified by:
+--   - The test asserts EXPLAIN QUERY PLAN for
+--       SELECT * FROM events_log WHERE user_id = 42
+--     contains 'SEARCH' AND the index name 'idx_events_log_user'.
+--   - The test then asserts the query returns exactly 3 rows.
+--
+-- Concepts: CREATE INDEX, query-plan impact, when an index helps
+--
+-- An index is an ordered, secondary data structure (a B-tree, by default)
+-- that maps a column's value to the row(s) holding that value. With an
+-- index on (user_id), the optimizer can replace a full SCAN with a SEARCH
+-- into the index plus a small number of row fetches.
+--
+-- Rules of thumb (true on every engine, not just SQLite):
+--
+--   * Indexes accelerate equality and range predicates on the indexed
+--     columns: WHERE user_id = ?, WHERE created_at BETWEEN ? AND ?.
+--   * Composite index (a, b, c) helps queries that filter on a leading
+--     prefix: (a), (a, b), (a, b, c) -- but NOT (b) alone.
+--   * Indexes cost write throughput and disk space; don't index everything.
+--   * Don't index very low-cardinality columns alone (status with 4 values);
+--     the planner often prefers a scan anyway.
+--
+-- Once you've added the index and re-run the tests, plug the same query
+-- into EXPLAIN QUERY PLAN yourself and notice the SCAN -> SEARCH switch.
+-- That motion is the entire point of indexing.
+-- ============================================================
+-- TODO: replace the placeholder below with the CREATE TABLE + INSERTs + CREATE INDEX.
+CREATE TABLE events_log (id INTEGER PRIMARY KEY, user_id INTEGER NOT NULL, kind TEXT NOT NULL, created_at TEXT NOT NULL);  -- TODO: no rows / no index => test fails (SCAN, not SEARCH)

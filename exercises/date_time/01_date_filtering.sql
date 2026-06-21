@@ -1,0 +1,26 @@
+-- ============================================================
+-- Exercise: Orders placed in January 2023
+-- Problem: Return id, customer_id, order_date for every order whose order_date
+--          falls in the month of January 2023.
+-- Expected columns (in order): id, customer_id, order_date
+-- Ordering: order_date ASC, id ASC
+-- Concepts: date range filtering, ISO-8601 string comparison
+--
+-- SQLite stores dates as ISO-8601 TEXT ('YYYY-MM-DD'). Because that format
+-- sorts lexicographically the same way it sorts as a date, plain string
+-- comparisons "just work":
+--
+--   WHERE order_date >= '2023-01-01' AND order_date < '2023-02-01'
+--
+-- Prefer half-open ranges ([start, next_start)) over BETWEEN. Reasons:
+--   - BETWEEN is INCLUSIVE on both ends -- BETWEEN '2023-01-01' AND
+--     '2023-01-31' would miss any timestamp on Jan 31st with a time part.
+--   - Half-open ranges chain cleanly: month boundary moves by one line edit.
+--   - It also matches how you'd write the predicate against a real DATE
+--     or TIMESTAMP type.
+--
+-- "last 30 days" pattern, for reference (not what this exercise asks):
+--   WHERE order_date >= date('now', '-30 days')
+-- ============================================================
+-- TODO: replace the placeholder below with your query
+SELECT NULL AS todo;  -- placeholder: makes the test fail until you solve it

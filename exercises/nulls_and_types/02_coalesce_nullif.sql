@@ -1,0 +1,23 @@
+-- ============================================================
+-- Exercise: Replace NULL manager_id with 0
+-- Problem: Return every employee's id, name, and an `effective_manager` column
+--          that is their manager_id, BUT with NULL replaced by 0 (so the
+--          top-of-org row shows 0 instead of NULL).
+-- Expected columns (in order): id, name, effective_manager
+-- Ordering: id ASC
+-- Concepts: COALESCE, NULL substitution
+--
+-- COALESCE(a, b, c, ...) returns the FIRST non-NULL argument from its list.
+-- It's the standard way to provide a default for a possibly-NULL value:
+--
+--   COALESCE(manager_id, 0)        -- manager_id if not null, else 0
+--   COALESCE(nickname, full_name)  -- prefer nickname, fall back to full_name
+--
+-- A close cousin is NULLIF(a, b): returns NULL when a = b, otherwise a.
+-- It's the inverse operation -- useful for turning "sentinel" values
+-- (empty string, 0, 'N/A') back into NULL:
+--
+--   NULLIF(rating, 0)  -- treat 0 as "no rating" / NULL
+-- ============================================================
+-- TODO: replace the placeholder below with your query
+SELECT NULL AS todo;  -- placeholder: makes the test fail until you solve it

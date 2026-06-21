@@ -1,0 +1,38 @@
+-- ============================================================
+-- Exercise: Upsert page-view counters
+-- Problem: 1. CREATE a table named `page_counters`:
+--             page  TEXT    PRIMARY KEY
+--             views INTEGER NOT NULL DEFAULT 0
+--          2. Using a SINGLE upsert statement per event, record these four
+--             page views in this order:
+--                'home', 'about', 'home', 'home'
+--             Each statement must INSERT the page with views=1 if the row
+--             does not exist, and otherwise ADD 1 to its current views.
+--          Final expected state:
+--             ('about', 1)
+--             ('home',  3)
+-- Verified by: the test runs this script then queries
+--              SELECT page, views FROM page_counters ORDER BY page.
+-- Concepts: UPSERT, INSERT ... ON CONFLICT ... DO UPDATE
+--
+-- SQLite (and Postgres) spell upsert as:
+--
+--   INSERT INTO t (key_col, val_col) VALUES (...)
+--   ON CONFLICT (key_col) DO UPDATE
+--     SET val_col = t.val_col + 1;     -- or any expression
+--
+-- Inside the DO UPDATE clause you can refer to the EXISTING row's columns
+-- with the table name (`t.val_col`) and to the row that would have been
+-- inserted with the alias `excluded` (`excluded.val_col`). That makes
+-- patterns like "newer-wins" easy:
+--
+--   ON CONFLICT (id) DO UPDATE SET name = excluded.name;
+--
+-- The alternative "DO NOTHING" silently skips the conflict instead of
+-- updating: useful for "insert if missing, ignore if present".
+--
+-- MySQL spells the same idea differently (INSERT ... ON DUPLICATE KEY
+-- UPDATE). MERGE is the SQL-standard form; Postgres 15+ supports it too.
+-- ============================================================
+-- TODO: replace the placeholder below with the CREATE + 4 upserts
+CREATE TABLE page_counters (page TEXT PRIMARY KEY, views INTEGER NOT NULL DEFAULT 0);  -- TODO: no upserts yet => empty table => test fails
